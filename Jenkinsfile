@@ -40,5 +40,14 @@ pipeline {
                 }
             }
         }
+
+        stage("Quality Gate") {
+            steps {
+                script {
+                    // waitForQualityGate automatically uses the SonarQube environment
+                    waitForQualityGate abortPipeline: false
+                }
+            }
+        }
     }
 }
