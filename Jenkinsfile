@@ -44,8 +44,9 @@ pipeline {
         stage("Quality Gate") {
             steps {
                 script {
-                    // waitForQualityGate automatically uses the SonarQube environment
-                    waitForQualityGate abortPipeline: false
+                    timeout(time: 10, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: false
+                    }
                 }
             }
         }
